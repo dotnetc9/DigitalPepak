@@ -1,0 +1,34 @@
+﻿@model DigitalPepak.Kewan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kewan</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NamaKewan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamaKewan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnakKewan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnakKewan)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KewanId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

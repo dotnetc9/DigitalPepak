@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DigitalPepak.Tetuwuhan>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tetuwuhan1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AraneKembang)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tetuwuhan1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AraneKembang)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.KembangId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.KembangId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.KembangId })
+        </td>
+    </tr>
+}
+
+</table>

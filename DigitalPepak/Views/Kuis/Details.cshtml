@@ -1,0 +1,42 @@
+﻿@model DigitalPepak.Kuis
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kuis</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pertanyaan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pertanyaan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kewan.NamaKewan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kewan.NamaKewan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tetuwuhan.Tetuwuhan1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tetuwuhan.Tetuwuhan1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.KuisId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

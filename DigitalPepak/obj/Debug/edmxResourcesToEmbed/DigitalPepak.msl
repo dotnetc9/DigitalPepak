@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DigitalPepakModelStoreContainer" CdmEntityContainer="DigitalPepakEntities">
+    <EntitySetMapping Name="Kewan">
+      <EntityTypeMapping TypeName="DigitalPepakModel.Kewan">
+        <MappingFragment StoreEntitySet="Kewan">
+          <ScalarProperty Name="KewanId" ColumnName="KewanId" />
+          <ScalarProperty Name="NamaKewan" ColumnName="NamaKewan" />
+          <ScalarProperty Name="AnakKewan" ColumnName="AnakKewan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Kuis">
+      <EntityTypeMapping TypeName="DigitalPepakModel.Kuis">
+        <MappingFragment StoreEntitySet="Kuis">
+          <ScalarProperty Name="KuisId" ColumnName="KuisId" />
+          <ScalarProperty Name="Pertanyaan" ColumnName="Pertanyaan" />
+          <ScalarProperty Name="KewanId" ColumnName="KewanId" />
+          <ScalarProperty Name="KembangId" ColumnName="KembangId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tetuwuhan">
+      <EntityTypeMapping TypeName="DigitalPepakModel.Tetuwuhan">
+        <MappingFragment StoreEntitySet="Tetuwuhan">
+          <ScalarProperty Name="KembangId" ColumnName="KembangId" />
+          <ScalarProperty Name="Tetuwuhan1" ColumnName="Tetuwuhan" />
+          <ScalarProperty Name="AraneKembang" ColumnName="AraneKembang" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetNewKewanId" FunctionName="DigitalPepakModel.Store.GetNewKewanId" />
+    <FunctionImportMapping FunctionImportName="GetNewKuisId" FunctionName="DigitalPepakModel.Store.GetNewKuisId" />
+    <FunctionImportMapping FunctionImportName="GetNewTetuwuhanId" FunctionName="DigitalPepakModel.Store.GetNewTetuwuhanId" />
+  </EntityContainerMapping>
+</Mapping>

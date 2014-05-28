@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigitalPepakModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DigitalPepakModelStoreContainer">
+    <EntitySet Name="Kewan" EntityType="DigitalPepakModel.Store.Kewan" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Kuis" EntityType="DigitalPepakModel.Store.Kuis" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tetuwuhan" EntityType="DigitalPepakModel.Store.Tetuwuhan" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Kuis_Kewan" Association="DigitalPepakModel.Store.FK_Kuis_Kewan">
+      <End Role="Kewan" EntitySet="Kewan" />
+      <End Role="Kuis" EntitySet="Kuis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kuis_Tetuwuhan" Association="DigitalPepakModel.Store.FK_Kuis_Tetuwuhan">
+      <End Role="Tetuwuhan" EntitySet="Tetuwuhan" />
+      <End Role="Kuis" EntitySet="Kuis" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Kewan">
+    <Key>
+      <PropertyRef Name="KewanId" />
+    </Key>
+    <Property Name="KewanId" Type="int" Nullable="false" />
+    <Property Name="NamaKewan" Type="nchar" MaxLength="30" />
+    <Property Name="AnakKewan" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Kuis">
+    <Key>
+      <PropertyRef Name="KuisId" />
+    </Key>
+    <Property Name="KuisId" Type="int" Nullable="false" />
+    <Property Name="Pertanyaan" Type="nchar" MaxLength="100" />
+    <Property Name="KewanId" Type="int" />
+    <Property Name="KembangId" Type="int" />
+  </EntityType>
+  <EntityType Name="Tetuwuhan">
+    <Key>
+      <PropertyRef Name="KembangId" />
+    </Key>
+    <Property Name="KembangId" Type="int" Nullable="false" />
+    <Property Name="Tetuwuhan" Type="nchar" MaxLength="30" />
+    <Property Name="AraneKembang" Type="nchar" MaxLength="30" />
+  </EntityType>
+  <Association Name="FK_Kuis_Kewan">
+    <End Role="Kewan" Type="DigitalPepakModel.Store.Kewan" Multiplicity="0..1" />
+    <End Role="Kuis" Type="DigitalPepakModel.Store.Kuis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kewan">
+        <PropertyRef Name="KewanId" />
+      </Principal>
+      <Dependent Role="Kuis">
+        <PropertyRef Name="KewanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kuis_Tetuwuhan">
+    <End Role="Tetuwuhan" Type="DigitalPepakModel.Store.Tetuwuhan" Multiplicity="0..1" />
+    <End Role="Kuis" Type="DigitalPepakModel.Store.Kuis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tetuwuhan">
+        <PropertyRef Name="KembangId" />
+      </Principal>
+      <Dependent Role="Kuis">
+        <PropertyRef Name="KembangId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GetNewKewanId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetNewKuisId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GetNewTetuwuhanId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+</Schema>

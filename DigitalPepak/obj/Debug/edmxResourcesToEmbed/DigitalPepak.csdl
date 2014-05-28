@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigitalPepakModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DigitalPepakEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Kewan" EntityType="DigitalPepakModel.Kewan" />
+    <EntitySet Name="Kuis" EntityType="DigitalPepakModel.Kuis" />
+    <EntitySet Name="Tetuwuhan" EntityType="DigitalPepakModel.Tetuwuhan" />
+    <AssociationSet Name="FK_Kuis_Kewan" Association="DigitalPepakModel.FK_Kuis_Kewan">
+      <End Role="Kewan" EntitySet="Kewan" />
+      <End Role="Kuis" EntitySet="Kuis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Kuis_Tetuwuhan" Association="DigitalPepakModel.FK_Kuis_Tetuwuhan">
+      <End Role="Tetuwuhan" EntitySet="Tetuwuhan" />
+      <End Role="Kuis" EntitySet="Kuis" />
+    </AssociationSet>
+    <FunctionImport Name="GetNewKewanId" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GetNewKuisId" ReturnType="Collection(Int32)" />
+    <FunctionImport Name="GetNewTetuwuhanId" ReturnType="Collection(Int32)" />
+  </EntityContainer>
+  <EntityType Name="Kewan">
+    <Key>
+      <PropertyRef Name="KewanId" />
+    </Key>
+    <Property Name="KewanId" Type="Int32" Nullable="false" />
+    <Property Name="NamaKewan" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="AnakKewan" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Kuis" Relationship="DigitalPepakModel.FK_Kuis_Kewan" FromRole="Kewan" ToRole="Kuis" />
+  </EntityType>
+  <EntityType Name="Kuis">
+    <Key>
+      <PropertyRef Name="KuisId" />
+    </Key>
+    <Property Name="KuisId" Type="Int32" Nullable="false" />
+    <Property Name="Pertanyaan" Type="String" MaxLength="100" Unicode="true" FixedLength="true" />
+    <Property Name="KewanId" Type="Int32" />
+    <Property Name="KembangId" Type="Int32" />
+    <NavigationProperty Name="Kewan" Relationship="DigitalPepakModel.FK_Kuis_Kewan" FromRole="Kuis" ToRole="Kewan" />
+    <NavigationProperty Name="Tetuwuhan" Relationship="DigitalPepakModel.FK_Kuis_Tetuwuhan" FromRole="Kuis" ToRole="Tetuwuhan" />
+  </EntityType>
+  <EntityType Name="Tetuwuhan">
+    <Key>
+      <PropertyRef Name="KembangId" />
+    </Key>
+    <Property Name="KembangId" Type="Int32" Nullable="false" />
+    <Property Name="Tetuwuhan1" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="AraneKembang" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Kuis" Relationship="DigitalPepakModel.FK_Kuis_Tetuwuhan" FromRole="Tetuwuhan" ToRole="Kuis" />
+  </EntityType>
+  <Association Name="FK_Kuis_Kewan">
+    <End Role="Kewan" Type="DigitalPepakModel.Kewan" Multiplicity="0..1" />
+    <End Role="Kuis" Type="DigitalPepakModel.Kuis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kewan">
+        <PropertyRef Name="KewanId" />
+      </Principal>
+      <Dependent Role="Kuis">
+        <PropertyRef Name="KewanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Kuis_Tetuwuhan">
+    <End Role="Tetuwuhan" Type="DigitalPepakModel.Tetuwuhan" Multiplicity="0..1" />
+    <End Role="Kuis" Type="DigitalPepakModel.Kuis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tetuwuhan">
+        <PropertyRef Name="KembangId" />
+      </Principal>
+      <Dependent Role="Kuis">
+        <PropertyRef Name="KembangId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
